@@ -1,0 +1,5 @@
+package com.cg.jhlb1.entity;
+
+public class Author {
+
+}

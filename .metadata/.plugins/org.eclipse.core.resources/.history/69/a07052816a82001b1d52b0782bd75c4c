@@ -1,0 +1,37 @@
+package com.cg.jhlb1.ui;
+
+import java.util.Scanner;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+import com.cg.jhlb1.entity.Author;
+import com.cg.jhlb1.util.JPAUtil;
+
+public class App02 {
+
+	public static void main(String[] args) {
+		EntityManager em = JPAUtil.getEntityManager();
+
+		Scanner scan = new Scanner(System.in);
+		System.out.println("enter authorId:");
+		Long authorId = scan.nextLong();
+		System.out.println("enter authorId to update:");
+		Double authorId1 = scan.nextDouble();
+
+		Author author = em.find(Author.class, authorId1);
+		if (author == null) {
+			System.out.println("author with id #" + authorId1+ "not found");
+		} else {
+			EntityTransaction txn = em.getTransaction();
+			txn.begin();
+			author.setAuthorId(authorId1);
+			em.merge(author);
+			txn.commit();
+
+		}
+		scan.close();
+		em.close();
+
+	}
+}

@@ -1,0 +1,38 @@
+package com.cg.jh02.ui;
+
+import java.util.Scanner;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+import com.cg.jh02.entity.Product;
+import com.cg.jh02.util.JPAUtil;
+
+public class App02 {
+
+	public static void main(String[] args) {
+		EntityManager em = JPAUtil.getEntityManager();
+
+		Scanner scan = new Scanner(System.in);
+		System.out.println("enter product id:");
+		Long productId = scan.nextLong();
+		System.out.println("enter unit rate to update:");
+		Double unitRate = scan.nextDouble();
+
+		Product product = em.find(Product.class, productId);
+		if (product == null) {
+			System.out.println("product with id #" + productId + "not found");
+		} else {
+			EntityTransaction txn = em.getTransaction();
+			txn.begin();
+			product.setUnitRate(unitRate);
+			em.merge(product);
+			txn.commit();
+
+		}
+		scan.close();
+		em.close();
+
+	}
+
+}

@@ -1,0 +1,23 @@
+package com.cg.jhlb1.ui;
+
+import javax.persistence.EntityManager;
+
+import com.cg.jhlb1.util.JPAUtil;
+import com.cg.jhlb1.entity.Author;
+
+public class App03 {
+
+	public static void main(String[] args) {
+		EntityManager em = JPAUtil.getEntityManager();
+
+		Author author = em.find(Author.class, 101L);
+		if (author != null)
+			System.out.println(author);
+		else {
+			System.out.println("author not found");
+		}
+		em.close();
+
+	}
+
+}

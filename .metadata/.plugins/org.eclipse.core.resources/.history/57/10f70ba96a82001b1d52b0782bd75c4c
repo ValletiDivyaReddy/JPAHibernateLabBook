@@ -1,0 +1,23 @@
+package com.cg.jh02.ui;
+
+import javax.persistence.EntityManager;
+
+import com.cg.jh02.entity.Product;
+import com.cg.jh02.util.JPAUtil;
+
+public class App03 {
+
+	public static void main(String[] args) {
+		EntityManager em = JPAUtil.getEntityManager();
+
+		Product product = em.find(Product.class, 101L);
+		if (product != null)
+			System.out.println(product);
+		else {
+			System.out.println("product not found");
+		}
+		em.close();
+
+	}
+
+}

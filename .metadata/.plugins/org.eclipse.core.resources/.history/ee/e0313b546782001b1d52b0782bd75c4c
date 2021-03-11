@@ -1,0 +1,26 @@
+package com.cg.jhlb1.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="author")
+public class Author {
+	@Id
+	@Column(name="author_id")
+	private Long authorId;
+	
+	@Column(name = "first_name")
+	private String firstName;
+	
+	@Column(name = "middle_name")
+	private String middleName;
+	
+	@Column(name = "last_name")
+	private String lastName;
+	
+	
+
+}
