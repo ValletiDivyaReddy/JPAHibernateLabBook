@@ -4,39 +4,39 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "author")
+@Table (name="authors")
 public class Author implements Serializable {
-	private static final long serialVersionUID = 1L;
 
+	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name = "author_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
 	private Long authorId;
 
-	@Column(name = "first_name")
+	@Column
 	private String firstName;
 
-	@Column(name = "middle_name")
+	@Column
 	private String middleName;
 
-	@Column(name = "last_name")
+	@Column
 	private String lastName;
 
-	@Id
-	@Column(name = "phn_no")
+	@Column
 	private String phoneNo;
 
 	public Author() {
-
-		/* default constructor */
+		super();
 	}
 
-	public Author(Long authorId,String firstName, String middleName, String lastName, String phoneNo) {
+	public Author(String firstName, String middleName, String lastName, String phoneNo) {
 		super();
-		this.authorId=authorId;
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;

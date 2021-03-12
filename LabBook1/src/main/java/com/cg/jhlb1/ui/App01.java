@@ -10,9 +10,9 @@ public class App01 {
 
 	public static void main(String[] args) {
 		EntityManager em = JPAUtil.getEntityManager();
-		Author a1 = new Author(101L,"Divya","Reddy","Valleti","77880290088");
-		Author a2 = new Author(102L,"Navya","Reddy","Valleti","90744547253" );
-		Author a3 = new Author(103L,"Jaya","Reddy","Valleti","549316037267" );
+		Author a1 = new Author("Divya", "Reddy", "Valleti", "77880290088");
+		Author a2 = new Author("Navya", "Reddy", "Valleti", "90744547253");
+		Author a3 = new Author("Jaya", "Reddy", "Valleti", "54931603727");
 
 		EntityTransaction txn = em.getTransaction();
 		txn.begin();

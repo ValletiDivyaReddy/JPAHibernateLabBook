@@ -1,21 +1,33 @@
 package com.cg.jhlb1.ui;
 
-import javax.persistence.EntityManager;
+import java.util.Scanner;
 
-import com.cg.jhlb1.util.JPAUtil;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
 import com.cg.jhlb1.entity.Author;
+import com.cg.jhlb1.util.JPAUtil;
 
 public class App03 {
 
 	public static void main(String[] args) {
 		EntityManager em = JPAUtil.getEntityManager();
 
-		Author author = em.find(Author.class, 101L);
-		if (author != null)
-			System.out.println(author);
+		Scanner scan = new Scanner(System.in);
+		System.out.println("enter author id:");
+		Long authorId = scan.nextLong();
+
+		Author author = em.find(Author.class, authorId);
+		if (author == null)
+			System.out.println("author with id #" +authorId + "not found");
 		else {
-			System.out.println("author not found");
+			EntityTransaction txn = em.getTransaction();
+			txn.begin();
+			em.remove(author);
+			txn.commit();
+
 		}
+		scan.close();
 		em.close();
 
 	}

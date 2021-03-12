@@ -17,7 +17,7 @@ public class App02 {
 		System.out.println("enter author id:");
 		Long authorId = scan.nextLong();
 		System.out.println("enter firstName to update:");
-		String firstName = scan.toString();
+		String firstName = scan.next();
 
 		Author author = em.find(Author.class, authorId);
 		if (author == null) {
